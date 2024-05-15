@@ -1,11 +1,35 @@
-import { auth } from "@/auth";
+import { onGetListings } from "@/actions/listings";
+import { onGetReservationAction } from "@/actions/reservations";
+import Container from "@/components/Container";
+import EmptyState from "@/components/EmptyState";
+import ListingCard from "@/components/listings/ListingCard";
+import getCurrentUser from "@/libs/getCurrentUser";
 
 export default async function Home() {
-  const userAuth = await auth();
+  const userAuth = await getCurrentUser();
+  const listings = await onGetListings();
+  const reservations = await onGetReservationAction({ userId: userAuth?.id });
+
+  if (!listings.length) {
+    return (
+      <EmptyState showReset />
+    )
+  }
+
 
   return (
-    <div className=" text-black bg-red-400 p-5">
+    <Container>
+      <div className="pt-24 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
+        {listings.map((listing) => (
+          <ListingCard
+            key={listing.id}
+            data={listing}
+            currentUser={userAuth}
+            reservation={reservations.find(reservation => reservation.listingId === listing.id)}
+          />
+        ))}
+      </div>
 
-    </div>
+    </Container>
   );
 }

@@ -31,7 +31,9 @@ export default function RootLayout({
 
         <Navbar />
 
-        {children}
+        <main className="pb-20 pt-28">
+          {children}
+        </main>
       </body>
     </html>
   );

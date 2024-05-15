@@ -25,7 +25,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
     const loginModal = useLoginModal();
     const rentModal = useRentModal();
 
-    
+
 
     const toggleOpen = useCallback(() => {
         setIsOpen(!isOpen)
@@ -80,7 +80,10 @@ const UserMenu: React.FC<UserMenuProps> = ({
                                 ? (
                                     <>
                                         <MenuItem
-                                            onClick={() => { }}
+                                            onClick={() => {
+                                                setIsOpen(false);
+                                                router.push('/trips');
+                                            }}
                                             label='My trips'
                                         />
 
@@ -90,7 +93,10 @@ const UserMenu: React.FC<UserMenuProps> = ({
                                         />
 
                                         <MenuItem
-                                            onClick={() => { }}
+                                            onClick={() => {
+                                                setIsOpen(false);
+                                                router.push('/reservations');
+                                            }}
                                             label='My reservations'
                                         />
 

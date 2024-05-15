@@ -12,6 +12,7 @@ import "leaflet/dist/leaflet.css"
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png'
 import markerIcon from 'leaflet/dist/images/marker-icon.png'
 import markerShadow from 'leaflet/dist/images/marker-shadow.png'
+import { useEffect, useState } from 'react'
 
 
 // @ts-ignore
@@ -30,6 +31,16 @@ interface MapProps {
 const Map: React.FC<MapProps> = ({
     center
 }) => {
+    const [isMouted, setIsMouted] = useState(false);
+
+    useEffect(() => {
+        if (!isMouted) {
+            setIsMouted(true)
+        }
+
+    }, [isMouted])
+
+    if (!isMouted) return null;
 
     return (
         <MapContainer

@@ -54,3 +54,42 @@ export const UserListingAction = async (data: any) => {
         throw error;
     }
 }
+
+
+export const onGetListings = async () => {
+    try {
+        const listings = await prismaDB.listing.findMany({
+            orderBy: {
+                createdAt: "desc"
+            }
+        })
+
+        return listings;
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
+}
+
+export const onGetListingById = async (listingId: string) => {
+    try {
+        const listing = await prismaDB.listing.findUnique({
+            where: { id: listingId },
+            include: {
+                user: true,
+                reservations: true
+            }
+        })
+
+        if (!listing) return null;
+
+        if (listing?.user) {
+            listing.user.hashedPassword = ''
+        }
+
+        return listing;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}

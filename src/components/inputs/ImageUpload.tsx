@@ -35,7 +35,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
       {({ open }) => {
         function handleOnClick() {
           handleUpload(undefined);
-          open();
+          open?.();
         }
         return (
           <button
