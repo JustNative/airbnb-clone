@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import LoginModal from "@/components/modals/LoginModal";
 import RentModal from "@/components/modals/RentModal";
 import SearchModal from "@/components/modals/SearchModal";
+import { Suspense } from "react";
 
 const font = Nunito({ subsets: ["latin"] });
 
@@ -27,7 +28,10 @@ export default function RootLayout({
         <Toaster />
         <LoginModal />
         <RegisterModal />
-        <SearchModal />
+
+        <Suspense>
+          <SearchModal />
+        </Suspense>
 
         <RentModal />
 

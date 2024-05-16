@@ -1,6 +1,5 @@
 "use client"
 
-import React from 'react'
 import Container from '../Container'
 import { TbBeach, TbMountain } from 'react-icons/tb'
 import { GiBarn, GiBoatFishing, GiCactus, GiCastle, GiCaveEntrance, GiForestCamp, GiIsland, GiVanillaFlower, GiWindmill } from 'react-icons/gi'
@@ -50,6 +49,7 @@ const Categories = () => {
                     >
                         <categorie.icon size={26} />
                     </CategoryBox>
+
                 ))}
             </div>
         </Container>
