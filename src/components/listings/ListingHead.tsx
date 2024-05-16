@@ -1,3 +1,5 @@
+"use client"
+
 import useCountries from "@/hooks/useCountries";
 import { Listing, User } from "@prisma/client";
 import Heading from "../Heading";

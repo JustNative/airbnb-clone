@@ -13,7 +13,6 @@ import { onLoginUser, onSignInGithubUser, onSignInGoogleUser } from "@/actions/a
 import useLoginModal from "@/hooks/useLoginModal";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
-import RegisterModal from "./RegisterModal";
 import useRegisterModal from "@/hooks/useRegisterModal";
 
 

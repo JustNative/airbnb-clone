@@ -46,7 +46,7 @@ const Categories = () => {
                     <CategoryBox
                         key={categorie.label}
                         label={categorie.label}
-                        selected={categorie.label === params?.get('category')}
+                        selected={categorie.label === params?.get('category') || false}
                     >
                         <categorie.icon size={26} />
                     </CategoryBox>

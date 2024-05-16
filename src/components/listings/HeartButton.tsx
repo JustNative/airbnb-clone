@@ -1,3 +1,5 @@
+"use client"
+
 import { onFavoriteListing } from "@/actions/favorites";
 import useLoginModal from "@/hooks/useLoginModal";
 import { User } from "@prisma/client";

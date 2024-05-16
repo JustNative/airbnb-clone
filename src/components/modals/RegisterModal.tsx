@@ -22,7 +22,6 @@ const RegisterModal = () => {
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors, isSubmitting },
     } = useForm<FieldValues>({
         defaultValues: {
