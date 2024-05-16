@@ -2,7 +2,7 @@ import { Spinner } from '@/components/Spinner'
 
 const loading = () => {
     return (
-        <div className="h-full w-full flex justify-center items-center">
+        <div className="flex justify-center items-center h-screen z-10">
             <Spinner />
         </div>
     )

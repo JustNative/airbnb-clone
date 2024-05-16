@@ -29,7 +29,7 @@ const TripsClient: React.FC<TripsClientProps> = ({
         try {
             const deleteReservation = await onCancellReservationAction(id);
             
-            console.log("deleteReservation: ", deleteReservation)
+            // console.log("deleteReservation: ", deleteReservation)
 
             toast.success('Reservation cancelled');
 
