@@ -6,7 +6,7 @@ export type CountrySelectValue = {
     value: string,
     label: string,
     flag: number[],
-    latlng: string,
+    latlng: L.LatLngExpression,
     region: string
 }
 

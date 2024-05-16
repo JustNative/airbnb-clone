@@ -39,7 +39,7 @@ export const UserRegistrationAction = async (
         return createUser;
 
     } catch (error) {
-        console.log(`Error on user registration ${email}: ${error}`);
+        // console.log(`Error on user registration ${email}: ${error}`);
         throw error;
     }
 }

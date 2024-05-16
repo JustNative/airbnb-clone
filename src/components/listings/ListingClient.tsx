@@ -86,7 +86,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
             router.push('/trips');
 
         } catch (error: any) {
-            console.log(error);
+            // console.log(error);
             toast.error(error.message);
         } finally {
             setIsLoading(false);

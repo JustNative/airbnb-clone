@@ -64,7 +64,7 @@ const LoginModal = () => {
             toast.success("Login Successfully")
 
         } catch (error: any) {
-            console.log(error);
+            // console.log(error);
             toast.error(error.message)
         }
 

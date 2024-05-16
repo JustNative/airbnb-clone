@@ -18,7 +18,7 @@ const ReservationPage = async () => {
     }
 
     const reservations = await onGetReservationAction({
-        authorId: userAuth?.id
+        userId: userAuth?.id
     })
 
     if (!reservations.length) {

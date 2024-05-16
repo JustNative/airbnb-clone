@@ -50,7 +50,7 @@ export const onFavoriteListing = async (listingId: string) => {
         }
 
     } catch (error) {
-        console.log(error);
+        // // console.log(error);
         throw error;
     }
 }
@@ -88,7 +88,31 @@ export const onDeleteListing = async (listingId: string) => {
         return deletedListing;
 
     } catch (error) {
-        console.log(error);
+        // // console.log(error);
+        throw error;
+    }
+}
+
+export const getAllFavoritesListings = async () => {
+    try {
+        const userAuth = await getCurrentUser();
+
+        if (!userAuth) {
+            throw new Error("Not Authorized");
+        }
+
+        const favorites = await prismaDB.listing.findMany({
+            where: {
+                id: {
+                    in: [...(userAuth.favoriteIds || [])]
+                }
+            }
+        })
+
+        return favorites;
+
+    } catch (error) {
+        // // console.log(error);
         throw error;
     }
 }

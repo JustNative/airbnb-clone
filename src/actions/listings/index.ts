@@ -50,25 +50,104 @@ export const UserListingAction = async (data: any) => {
         return listing;
 
     } catch (error) {
-        console.log(error);
+        // // console.log(error);
         throw error;
     }
 }
 
+type ListingParams = {
+    userId?: string,
+    guestCount?: number,
+    roomCount?: number,
+    bathroomCount?: number,
+    startDate?: string,
+    endDate?: string,
+    locationValue?: string,
+    category?: string
+}
 
-export const onGetListings = async () => {
+export const onGetListings = async (params: ListingParams) => {
+
     try {
-        const listings = await prismaDB.listing.findMany({
+
+        const {
+            userId,
+            guestCount,
+            roomCount,
+            bathroomCount,
+            startDate,
+            endDate,
+            locationValue,
+            category
+        } = params;
+
+        let query: any = {};
+
+        if (userId) {
+            query.userId = userId;
+        }
+
+        if (category) {
+            query.category = category;
+        }
+
+        if (guestCount) {
+            query.guestCount = {
+                gte: +guestCount
+            };
+        }
+
+        if (roomCount) {
+            query.roomCount = {
+                gte: +roomCount
+            };
+        }
+
+        if (bathroomCount) {
+            query.bathroomCount = {
+                gte: +bathroomCount
+            };
+        }
+
+        if (locationValue) {
+            query.locationValue = locationValue;
+        }
+
+        if (startDate && endDate) {
+            query.NOT = {
+                reservations: {
+                    some: {
+                        OR: [
+                            {
+                                endDate: { gte: startDate },
+                                startDate: { lte: endDate }
+                            },
+                            {
+                                startDate: { lte: endDate },
+                                endDate: { lte: endDate }
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+
+        const listing = await prismaDB.listing.findMany({
+            where: query,
             orderBy: {
-                createdAt: "desc"
+                createdAt: 'desc'
             }
         })
 
-        return listings;
+        if (!listing) return [];
+
+        return listing;
+
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         return [];
     }
+
 }
 
 export const onGetListingById = async (listingId: string) => {
@@ -89,7 +168,44 @@ export const onGetListingById = async (listingId: string) => {
 
         return listing;
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         return null;
+    }
+}
+
+export const onCancellPropertyAction = async (propertyId: string) => {
+    try {
+        const userAuth = await getCurrentUser();
+
+        if (!userAuth) {
+            throw new Error("Not Authorized");
+        }
+
+        // const property = await prismaDB.listing.delete({
+        //     where: {
+        //         id: propertyId,
+        //         OR: [
+        //             { userId: userAuth.id },
+        //         ]
+        //     }
+        // })
+
+        const property = await prismaDB.listing.deleteMany({
+            where: {
+                id: propertyId,
+                userId: userAuth.id
+            }
+        })
+
+        if (!property) {
+            throw new Error("Property not found");
+        }
+
+        return property;
+
+
+    } catch (error) {
+        // console.log(error);
+        throw error;
     }
 }

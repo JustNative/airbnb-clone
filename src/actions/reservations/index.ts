@@ -31,7 +31,7 @@ export const onCreateReservationAction = async (data: CreateReservation) => {
         return addReservation;
 
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         throw error;
     }
 }
@@ -78,7 +78,7 @@ export const onGetReservationAction = async (data: GetReservationType) => {
         return reservation;
 
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         return [];
     }
 }
@@ -113,7 +113,7 @@ export const onCancellReservationAction = async (reservationId: string) => {
         return cancelReservation;
 
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         throw error;
     }
 }

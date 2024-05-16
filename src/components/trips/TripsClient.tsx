@@ -36,7 +36,7 @@ const TripsClient: React.FC<TripsClientProps> = ({
             router.refresh();
 
         } catch (error: any) {
-            console.log(error);
+            // console.log(error);
             toast.error(error.message)
         } finally {
             setDeletingId('');

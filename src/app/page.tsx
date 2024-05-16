@@ -5,9 +5,9 @@ import EmptyState from "@/components/EmptyState";
 import ListingCard from "@/components/listings/ListingCard";
 import getCurrentUser from "@/libs/getCurrentUser";
 
-export default async function Home() {
+export default async function Home({ searchParams }: { searchParams: any }) {
   const userAuth = await getCurrentUser();
-  const listings = await onGetListings();
+  const listings = await onGetListings(searchParams);
   const reservations = await onGetReservationAction({ userId: userAuth?.id });
 
   if (!listings.length) {
@@ -15,7 +15,6 @@ export default async function Home() {
       <EmptyState showReset />
     )
   }
-
 
   return (
     <Container>

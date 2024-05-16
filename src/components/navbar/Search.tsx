@@ -1,10 +1,17 @@
+"use client"
 
+import useSearchModal from '@/hooks/useSearchModal'
 import { BiSearch } from 'react-icons/bi'
 
 
 const Search = () => {
+    const searchModal = useSearchModal();
+
+
     return (
-        <div className="border w-full md:w-auto py-2 rounded-full shadow-sm hover:shadow-md transition cursor-pointer">
+        <div
+            onClick={searchModal.onOpen}
+            className="border w-full md:w-auto py-2 rounded-full shadow-sm hover:shadow-md transition cursor-pointer">
             <div className="flex items-center justify-between">
                 <div className="text-sm font-semibold px-6">
                     Anywhere
@@ -19,7 +26,7 @@ const Search = () => {
                         Add Guests
                     </div>
                     <div className="p-2 bg-rose-500 rounded-full text-white">
-                        <BiSearch size={18}/>
+                        <BiSearch size={18} />
                     </div>
                 </div>
             </div>
